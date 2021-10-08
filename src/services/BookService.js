@@ -15,13 +15,13 @@ const findByPk = async (id) => {
   return book;
 }
 
-const create = async (newBookData) => {
+const createBook = async (newBookData) => {
   const createdBook = await Book.create(newBookData);
 
   return createdBook;
 }
 
-const update = async (bookNewData, id) => {
+const updateBook = async (bookNewData, id) => {
   const [updatedBook] = await Book.update(
     bookNewData,
     {
@@ -50,7 +50,7 @@ const deleteBook = async (id) => {
 module.exports = {
   findAll,
   findByPk,
-  create,
-  update,
+  createBook,
+  updateBook,
   deleteBook,
 }

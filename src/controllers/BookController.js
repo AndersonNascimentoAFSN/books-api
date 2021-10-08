@@ -26,11 +26,11 @@ const findByPk = async (req, res, next) => {
   }
 }
 
-const create = async (req, res, next) => {
+const createBook = async (req, res, next) => {
   try {
     const { title, author, pageQuantity } = req.body;
 
-    const createdBook = await BookService.create({ title, author, pageQuantity });
+    const createdBook = await BookService.createBook({ title, author, pageQuantity });
 
     res.status(201).json(createdBook);
   } catch (error) {
@@ -39,13 +39,13 @@ const create = async (req, res, next) => {
   }
 }
 
-const update = async (req, res, next) => {
+const updateBook = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { title, author, pageQuantity } = req.body;
 
     const updatedBook = await BookService
-      .update({ title, author, pageQuantity }, id);
+      .updateBook({ title, author, pageQuantity }, id);
 
     if (updatedBook.message) return res.status(updatedBook.code)
       .json({ message: updatedBook.message });
@@ -75,7 +75,7 @@ const deleteBook = async (req, res, next) => {
 module.exports = {
   findAll,
   findByPk,
-  create,
-  update,
+  createBook,
+  updateBook,
   deleteBook,
 }
