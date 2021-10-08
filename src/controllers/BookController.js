@@ -39,8 +39,28 @@ const create = async (req, res, next) => {
   }
 }
 
+const update = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { title, author, pageQuantity } = req.body;
+
+    const updatedBook = await BookService
+      .update({ title, author, pageQuantity }, id);
+
+    if (updatedBook.message) return res.status(updatedBook.code)
+      .json({ message: updatedBook.message });
+
+    return res.status(200).json(updatedBook);
+
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+}
+
 module.exports = {
   findAll,
   findByPk,
   create,
+  update,
 }
