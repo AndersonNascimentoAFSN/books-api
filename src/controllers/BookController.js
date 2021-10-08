@@ -26,6 +26,19 @@ const findByPk = async (req, res, next) => {
   }
 }
 
+const create = async (req, res, next) => {
+  try {
+    const { title, author, pageQuantity } = req.body;
+
+    const createdBook = await BookService.create({ title, author, pageQuantity });
+
+    res.status(201).json(createdBook);
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+}
+
 module.exports = {
   findAll,
   findByPk,
