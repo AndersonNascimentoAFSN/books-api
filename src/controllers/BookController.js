@@ -58,9 +58,24 @@ const update = async (req, res, next) => {
   }
 }
 
+const deleteBook = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+   await BookService.deleteBook(id);
+
+   return res.status(204).end();
+
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+}
+
 module.exports = {
   findAll,
   findByPk,
   create,
   update,
+  deleteBook,
 }
