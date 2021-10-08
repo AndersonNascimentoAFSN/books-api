@@ -38,9 +38,19 @@ const update = async (bookNewData, id) => {
   return updatedBook;
 }
 
+const deleteBook = async (id) => {
+  const deletedBook = await Book.destroy(
+    { where: { id } },
+  );
+  
+  console.log(deletedBook);
+  return deletedBook;
+}
+
 module.exports = {
   findAll,
   findByPk,
   create,
   update,
+  deleteBook,
 }
