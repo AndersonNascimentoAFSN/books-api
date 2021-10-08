@@ -17,12 +17,30 @@ const findByPk = async (id) => {
 
 const create = async (newBookData) => {
   const createdBook = await Book.create(newBookData);
-  
+
   return createdBook;
+}
+
+const update = async (bookNewData, id) => {
+  const [updatedBook] = await Book.update(
+    bookNewData,
+    {
+      where: {
+        id: id
+      }
+    }
+  );
+
+  if (updatedBook === 0) return { code: 404, message: 'book not found' };
+
+  if (updatedBook === 1) return await Book.findByPk(id);
+
+  return updatedBook;
 }
 
 module.exports = {
   findAll,
   findByPk,
   create,
+  update,
 }
