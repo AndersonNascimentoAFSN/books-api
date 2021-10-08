@@ -15,7 +15,14 @@ const findByPk = async (id) => {
   return book;
 }
 
+const create = async (newBookData) => {
+  const createdBook = await Book.create(newBookData);
+  
+  return createdBook;
+}
+
 module.exports = {
   findAll,
   findByPk,
+  create,
 }
